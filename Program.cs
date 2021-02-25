@@ -6,7 +6,7 @@ namespace TestGit
     {      
         static void Main(string[] args)
         {   
-            // Enter a comment
+            // Edit the comment 
             Console.WriteLine("Hello World!");
         }
     }
