@@ -1,0 +1,72 @@
+﻿syntax = "proto3";
+package proto;
+
+service ScoreManagerService
+{
+	rpc AddPlayer(AddPlayerRequestMsg) returns (ReplyMsg);
+	rpc GetPlayers(GetPlayerRequestMsg) returns (GetPlayersReplyMsg);
+	rpc InitService(InitRequestMsg) returns (ReplyMsg);
+	rpc UpdateGameResult (UpdateGameRequestMsg) returns (ReplyMsg);
+	rpc GetCurrentScore (GetCurrentScoreRequestMsg) returns (ScoreReplyMsg);
+}
+
+enum REPLY_MSG_RESULT
+{
+	SUCCEED = 0;
+	FAILED_TIME_OUT = 1;
+	FAILED_ON_ERROR = 2;
+}
+
+enum PLAYER
+{
+	PLAYER1 = 0;
+	PLAYER2 = 1;
+}
+message GetPlayerRequestMsg
+{
+	
+}
+
+message GetPlayersReplyMsg
+{
+	ReplyMsg reply = 1;
+	repeated AddPlayerRequestMsg playersData = 2;
+}
+
+message AddPlayerRequestMsg
+{
+    int32 id =1;
+	string first = 2;
+	string last = 3; 
+}
+
+message InitRequestMsg
+{
+	int32 player1Id = 1;
+	int32 player2Id = 2;
+}
+
+message ReplyMsg
+{
+	REPLY_MSG_RESULT result = 1;
+	string ErrorMsg = 2;
+	int32 gameID = 3;
+}
+
+message UpdateGameRequestMsg
+{
+	PLAYER playerScored = 1;
+	int32 gameID = 2;
+}
+
+message GetCurrentScoreRequestMsg
+{
+	int32 gameID = 1;
+}
+
+message ScoreReplyMsg
+{
+	int32 gameID = 1;
+	string player1Score = 2;
+	string player2Score = 3;
+}

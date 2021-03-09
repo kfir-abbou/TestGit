@@ -3,7 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestGit", "TestGit.csproj", "{3F9A7D23-8FAE-4C64-BF40-5CCCC547F06A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScoreCalculator.EF", "ScoreCalculator\ScoreCalculator.Common\ScoreCalculator.EF.csproj", "{F08876C3-3A72-4216-8AE4-338C2F3A101C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScoreCalculator.BL", "..\ScoreCalculator.BL\ScoreCalculator.BL.csproj", "{0E9390D0-DF20-4E2B-81E4-D9055BAEB35A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScoreDataClient", "Sources\gRpcTest1\ScoreDataClient.csproj", "{6288A498-15E2-4B94-9F42-7D1D5D8744B6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScoreManagerService", "Sources\gRpcClient\ScoreManagerService.csproj", "{019FF649-2525-4AB0-8789-AFA2CC33483F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameScoreEmulator", "Sources\GameScoreEmulator\GameScoreEmulator.csproj", "{1997B5DF-BD6A-413D-BCF1-DE59D09A844D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +19,26 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3F9A7D23-8FAE-4C64-BF40-5CCCC547F06A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3F9A7D23-8FAE-4C64-BF40-5CCCC547F06A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3F9A7D23-8FAE-4C64-BF40-5CCCC547F06A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3F9A7D23-8FAE-4C64-BF40-5CCCC547F06A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F08876C3-3A72-4216-8AE4-338C2F3A101C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F08876C3-3A72-4216-8AE4-338C2F3A101C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F08876C3-3A72-4216-8AE4-338C2F3A101C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F08876C3-3A72-4216-8AE4-338C2F3A101C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E9390D0-DF20-4E2B-81E4-D9055BAEB35A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E9390D0-DF20-4E2B-81E4-D9055BAEB35A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E9390D0-DF20-4E2B-81E4-D9055BAEB35A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E9390D0-DF20-4E2B-81E4-D9055BAEB35A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6288A498-15E2-4B94-9F42-7D1D5D8744B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6288A498-15E2-4B94-9F42-7D1D5D8744B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6288A498-15E2-4B94-9F42-7D1D5D8744B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6288A498-15E2-4B94-9F42-7D1D5D8744B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{019FF649-2525-4AB0-8789-AFA2CC33483F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{019FF649-2525-4AB0-8789-AFA2CC33483F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{019FF649-2525-4AB0-8789-AFA2CC33483F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{019FF649-2525-4AB0-8789-AFA2CC33483F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1997B5DF-BD6A-413D-BCF1-DE59D09A844D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1997B5DF-BD6A-413D-BCF1-DE59D09A844D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1997B5DF-BD6A-413D-BCF1-DE59D09A844D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1997B5DF-BD6A-413D-BCF1-DE59D09A844D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

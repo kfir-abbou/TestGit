@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Google.Protobuf" Version="3.15.4" />
+		<PackageReference Include="Grpc.Core" Version="2.36.1" />
+		<PackageReference Include="Grpc.Tools" Version="2.36.1">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Protobuf Include="**/*.proto" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="protos\ScoreManagerService.proto" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\ScoreCalculator\ScoreCalculator.Common\ScoreCalculator.EF.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Protobuf Update="protos\ScoreManagerService.proto" GrpcServices="Both" />
+	</ItemGroup>
+
+</Project>
