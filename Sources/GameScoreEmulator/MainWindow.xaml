@@ -1,9 +1,10 @@
-﻿<Window x:Class="GameScoreEmulator.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GameScoreEmulator"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" x:Class="GameScoreEmulator.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="1000">
     <Window.Resources>
@@ -35,10 +36,10 @@
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="First Player: "/>
-        <ComboBox Name="FirstPlayerCb" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" />
+        <ComboBox x:Name="FirstPlayerCb" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" />
 
         <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="Second Player: "/>
-        <ComboBox Name="SecondPlayerCb" Grid.Row="1" Grid.Column="1"  VerticalAlignment="Center" />
+        <ComboBox x:Name="SecondPlayerCb" Grid.Row="1" Grid.Column="1"  VerticalAlignment="Center" />
 
         <Button x:Name="StartGameBtn" Grid.Row="2" Grid.Column="0" Content="Start Game" Click="StartGameBtn_Click" />
 
@@ -63,7 +64,7 @@
         </GroupBox>
 
 
-        <RichTextBox Name="RichTb" Grid.Row="3" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="2" />
+        <RichTextBox x:Name="RichTb" Grid.Row="3" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="2" />
         <Grid Grid.Row="0" Grid.Column="3" Grid.RowSpan="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -73,19 +74,13 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-
-            <Button IsEnabled="False" Name="InitBtn" Grid.Row="0" Grid.Column="0"/>
-            <Button Name="FirstScoreBtn" Grid.Row="1" Grid.Column="0" Click="FirstScoreBtn_Click"/>
-            <Button Name="SecondScoreBtn" Grid.Row="2" Grid.Column="0" Click="SecondScoreBtn_Click"/>
-            <Button Name="GetCurrentScoreBtn" Grid.Row="3" Grid.Column="0" Click="GetCurrentScoreBtn_Click"/>
-
-            <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Text="Init Game"/>
-            <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Text="First Player Scored"/>
-            <TextBlock Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Text="Second Player Scored"/>
-            <TextBlock Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Text="Get Results"/>
+            <Button x:Name="FirstScoreBtn" Grid.Row="0" Grid.Column="0" Click="FirstScoreBtn_Click"/>
+            <Button x:Name="SecondScoreBtn" Grid.Row="1" Grid.Column="0" Click="SecondScoreBtn_Click"/>
+            <Button x:Name="GetCurrentScoreBtn" Grid.Row="2" Grid.Column="0" Click="GetCurrentScoreBoardDataBtn_Click"/>
+            <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Text="First Player Scored"/>
+            <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Text="Second Player Scored"/>
+            <TextBlock Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Text="Get Results"/>
         </Grid>
     </Grid>
 </Window>

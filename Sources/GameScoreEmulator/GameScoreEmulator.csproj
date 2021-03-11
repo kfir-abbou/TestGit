@@ -4,6 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
+    <UserSecretsId>e3539661-90e0-4dac-a36c-017009f4faa8</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,12 +14,18 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="MahApps.Metro" Version="2.4.4" />
     <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1.1" />
+    <PackageReference Include="Wpf.Themes" Version="1.1.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\gRpcTest1\ScoreDataClient.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="MaterialDesignThemes.Wpf">
+      <HintPath>..\..\..\..\Users\kfirabb\.nuget\packages\materialdesignthemes\4.0.0\lib\netcoreapp3.1\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

@@ -12,10 +12,8 @@ namespace ScoreCalculator.EF
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [ForeignKey("Game")] 
-        public int GameId { get; set; }
+        public Game Game { get; set; }
         
-        [ForeignKey("Player")]
-        public int ScoringPlayerId { get; set; }
+        public int ScoringPlayer { get; set; } // first = 0, second = 1
     }
 }

@@ -5,9 +5,10 @@ service ScoreManagerService
 {
 	rpc AddPlayer(AddPlayerRequestMsg) returns (ReplyMsg);
 	rpc GetPlayers(GetPlayerRequestMsg) returns (GetPlayersReplyMsg);
-	rpc InitService(InitRequestMsg) returns (ReplyMsg);
+	rpc StartNewMatch(StartMatchRequestMsg) returns (ReplyMsg);
 	rpc UpdateGameResult (UpdateGameRequestMsg) returns (ReplyMsg);
-	rpc GetCurrentScore (GetCurrentScoreRequestMsg) returns (ScoreReplyMsg);
+	//rpc GetCurrentScore (GetGameDataRequestMsg) returns (ScoreReplyMsg);
+	rpc GetScoreBoardStatus (ScoreBoardStatusRequestMsg) returns (ScoreBoardStatusReplyMsg);
 }
 
 enum REPLY_MSG_RESULT
@@ -40,7 +41,7 @@ message AddPlayerRequestMsg
 	string last = 3; 
 }
 
-message InitRequestMsg
+message StartMatchRequestMsg
 {
 	int32 player1Id = 1;
 	int32 player2Id = 2;
@@ -59,32 +60,37 @@ message UpdateGameRequestMsg
 	int32 gameID = 2;
 }
 
-message GetCurrentScoreRequestMsg
+//message GetGameDataRequestMsg
+//{
+//	int32 MatchId = 1;
+//}
+
+message ScoreBoardStatusRequestMsg
 {
-	int32 gameID = 1;
+	int32 MatchId = 1;
+}
+
+message gameStatus
+{
+	int32 gameID =1;
+	int32 player1Id = 2;
+	int32 totalScoresP1 = 3;
+	int32 player2Id = 4;
+	int32 totalScoresP2 = 5;
+}
+
+message ScoreBoardStatusReplyMsg
+{
+	REPLY_MSG_RESULT result = 1;
+	repeated gameStatus gameStatus = 2;
 }
 
 message ScoreReplyMsg
 {
-	string player1Score = 2;
-	string player2Score = 3;
+	int32 gameID = 1;
+	string p1Name = 2;
+	string p2Name = 3;
+	string player1Score = 4;
+	string player2Score = 5;
+	string gameStatus = 6;
 }
-
-
-/*
-service MyService
-{
-	rpc SayHi(RequestHi) returns (ReplyHi){}
-}
-
-message RequestHi
-{
-	string Name= 1;
-}
-
-message ReplyHi 
-{
-	string repName =1;
-	bool result=2;
-}
-*/

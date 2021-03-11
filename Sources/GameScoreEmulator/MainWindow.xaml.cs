@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Threading;
 using System.Windows;
 using Grpc.Core;
 using Proto;
@@ -22,9 +24,19 @@ namespace GameScoreEmulator
         public MainWindow()
         {
             InitializeComponent();
+            if (Debugger.IsAttached)
+            {
+                if (Process.GetProcesses().All(p => p.ProcessName != "ScoreManagerService"))
+                {
+                    Process.Start(@"C:\GIT\TestGit\Sources\gRpcClient\bin\Debug\netcoreapp3.1\ScoreManagerService.exe");
+                }
+            }
+           
+            Thread.Sleep(1000);
             refreshPlayersList();
             FirstPlayerCb.SelectedIndex = 0;
             SecondPlayerCb.SelectedIndex = 0;
+
         }
 
         protected override void OnInitialized(EventArgs e)
@@ -43,8 +55,13 @@ namespace GameScoreEmulator
                 PlayerScored = PLAYER._1
             };
             var rep = await m_client.UpdateGameResultAsync(req);
-            LogRichText($"[SecondScoreBtn_Click] First Player Scored -> {rep.Result}");
-            GetCurrentScoreBtn_Click(null, null);
+            LogRichText($"First Player Scored -> {rep.Result}");
+            //GetCurrentScoreBtn_Click(null, null);
+
+            //var statusReply = await m_client.GetScoreBoardStatusAsync(new GetGameDataRequestMsg
+            //{
+            //    GameID = m_currentGameId
+            //});
         }
 
         private async void SecondScoreBtn_Click(object sender, RoutedEventArgs e)
@@ -55,17 +72,18 @@ namespace GameScoreEmulator
                 PlayerScored = PLAYER._2
             };
             var rep = await m_client.UpdateGameResultAsync(req);
-            LogRichText($"[SecondScoreBtn_Click] Second Player Scored -> {rep.Result}");
-            GetCurrentScoreBtn_Click(null, null);
+            LogRichText($"Second Player Scored -> {rep.Result}");
+            //GetCurrentScoreBtn_Click(null, null);
         }
 
-        private void GetCurrentScoreBtn_Click(object sender, RoutedEventArgs e)
+        private void GetCurrentScoreBoardDataBtn_Click(object sender, RoutedEventArgs e)
         {
-            var rep = m_client.GetCurrentScore(new GetCurrentScoreRequestMsg
+            var rep = m_client.GetScoreBoardStatus(new ScoreBoardStatusRequestMsg
             {
-                GameID = m_currentGameId
+                MatchId = m_currentGameId
             });
-            LogRichText($"[GetCurrentScoreBtn_Click] Get Results -> P1: {rep.Player1Score}, P2: {rep.Player2Score}");
+            
+            //LogRichText($"Score Board -> {rep.P1Name}: {rep.Player1Score}\n{rep.P2Name}: {rep.Player2Score}, Status: {rep.GameStatus}");
         }
 
         private void LogRichText(string p_data)
@@ -85,6 +103,10 @@ namespace GameScoreEmulator
             {
                 LogRichText($"Player: {FirstNameTb.Text} {LastNameTb.Text} was added.");
             }
+            else
+            {
+                LogRichText($"Error: {reply.ErrorMsg}");
+            }
             refreshPlayersList();
         }
 
@@ -93,8 +115,7 @@ namespace GameScoreEmulator
             var reply = m_client.GetPlayers(new GetPlayerRequestMsg());
             var players = reply.PlayersData;
             if (players.Count == m_players.Count) return;
-
-
+            
             foreach (var plyr in players)
             {
                 if (m_playersNames.Contains($"{plyr.First} {plyr.Last}"))
@@ -110,9 +131,8 @@ namespace GameScoreEmulator
                 });
             }
 
-            FirstPlayerCb.ItemsSource = m_playersNames;
-            SecondPlayerCb.ItemsSource = m_playersNames;
-            UpdateLayout();
+            FirstPlayerCb.ItemsSource =new List<string>(m_playersNames);
+            SecondPlayerCb.ItemsSource = new List<string>(m_playersNames);
         }
 
       
@@ -123,19 +143,20 @@ namespace GameScoreEmulator
 
             var p1 = m_players.SingleOrDefault(p => p.FirstName == firstSplited.First() && p.LastName == firstSplited.Last()).Id;
             var p2 = m_players.SingleOrDefault(p => p.FirstName == secondSpilted.First() && p.LastName == secondSpilted.Last()).Id;
-            var initData = new InitRequestMsg
+            
+            var initData = new StartMatchRequestMsg
             {
                 Player1Id = p1,
                 Player2Id = p2
             };
 
-            var rep = m_client.InitService(initData);
+            var rep = m_client.StartNewMatch(initData);
             if (rep.Result == REPLY_MSG_RESULT.Succeed)
             {
                 m_currentGameId = rep.GameID;
             }
             Console.WriteLine($"[InitBtn_Click] reply: {rep}");
-            LogRichText($"[InitBtn_Click] Game with id: {rep.GameID} Started... ");
+            LogRichText($"Game with id: {rep.GameID} Started... ");
             //return rep;
         }
     }

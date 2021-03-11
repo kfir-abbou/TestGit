@@ -14,8 +14,8 @@ namespace ScoreDataClient
 {
     class Program
     {
-        private static Channel m_channel;
-        private static ScoreManagerService.ScoreManagerServiceClient m_client;
+        //private static Channel m_channel;
+        //private static ScoreManagerService.ScoreManagerServiceClient m_client;
 
         //static void Main(string[] args)
         //{

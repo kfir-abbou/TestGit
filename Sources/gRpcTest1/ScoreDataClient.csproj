@@ -19,15 +19,17 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="protos\ScoreManagerService.proto" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <ProjectReference Include="..\..\ScoreCalculator\ScoreCalculator.Common\ScoreCalculator.EF.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Protobuf Update="protos\ScoreManagerService.proto" GrpcServices="Both" />
+	  <Folder Include="protos\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Protobuf Include="..\gRpcClient\protos\ScoreManagerService.proto">
+	    <Link>protos\ScoreManagerService.proto</Link>
+	  </Protobuf>
 	</ItemGroup>
 
 </Project>

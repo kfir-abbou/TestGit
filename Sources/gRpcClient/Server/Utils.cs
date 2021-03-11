@@ -14,6 +14,8 @@ namespace ScoreManagerService.Server
                 1 => "15",
                 2 => "30",
                 3 => "40",
+                4 => "Head",
+                5 => "2Head",
                 _ => "0"
             };
         }

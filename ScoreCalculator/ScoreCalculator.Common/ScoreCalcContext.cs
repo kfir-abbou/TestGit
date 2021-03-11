@@ -37,8 +37,6 @@ namespace ScoreCalculator.EF
             modelBuilder.Entity<Match>()
                 .HasKey(p => new { p.Id });
         }
-        
-        
     }
 
     public interface IScoreCalcContext
@@ -50,7 +48,7 @@ namespace ScoreCalculator.EF
         DbSet<Match> Match { get; }
 
         void SaveData();
-        
+
     }
 }
 

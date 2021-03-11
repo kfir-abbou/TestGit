@@ -10,9 +10,8 @@ namespace ScoreCalculator.EF
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        [ForeignKey("FirstPlayer")]
-        public int FirstPlayer { get; set; }
-        [ForeignKey("SecondPlayer")] 
-        public int SecondPlayer { get; set; }
+
+        public TennisPlayer Winner { get; set; }
+        //public ICollection<TennisPlayer> Players { get; set; }
     }
 }

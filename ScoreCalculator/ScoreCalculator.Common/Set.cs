@@ -10,6 +10,6 @@ namespace ScoreCalculator.EF
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public virtual ICollection<Game> Games { get; set; }
-
+        public TennisPlayer Winner { get; set; }
     }
 }
